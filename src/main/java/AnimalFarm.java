@@ -1,13 +1,13 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class AnimalFarm {
     private final ArrayList<String> farmAnimals;
 
-    public AnimalFarm(ArrayList<String> farmAnimals) {
-        this.farmAnimals = farmAnimals;
+    public AnimalFarm(List<String> farmAnimals) {
+        if (farmAnimals == null) {
+            throw new IllegalArgumentException("Farm animals list cannot be null");
+        }
+        this.farmAnimals = new ArrayList<>(farmAnimals);
     }
 
     //task 1

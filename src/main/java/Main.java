@@ -15,12 +15,15 @@ public class Main {
 
         // Создаем объект фермы
         AnimalFarm farm = new AnimalFarm(animals);
+        System.out.println("Все животные на ферме:\n" + farm);
 
         // Получаем подсчитанных животных
+        System.out.println("Подсчитанные животные на ферме:");
         HashMap<Animal, Integer> countedAnimals = farm.countedAnimals();
         System.out.println(countedAnimals);
 
         //Получаем уникальные имена животных
+        System.out.println("\nУникальные имена животных на ферме:");
         HashSet<String> uniqueNamesOfAnimals = farm.uniqueNamesOfAnimals();
         System.out.println(uniqueNamesOfAnimals);
 
@@ -33,6 +36,7 @@ public class Main {
         farm.addAnimalToFarm(Animal.CAT);              // CAT N
 
         //Вывод всех животных на ферме в переопределенном виде "Вид_животного: Имя_животного"
+        System.out.println("\nВсе животные на ферме после добавления новых методом addAnimalToFarm():");
         System.out.println(farm);
 
     }
