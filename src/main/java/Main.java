@@ -1,27 +1,39 @@
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         // Создаем список животных
-        List<String> animals = List.of(
-                "Cat Tom",
-                "Dog Rex",
-                "Horse Spirit",
-                "Cat Jerry",
-                "Cow Bessie",
-                "Lion King" // Это неправильное животное, будет ошибка
-        );
+        ArrayList<String> animals = new ArrayList<>();
+        animals.add("Cat Tom");
+        animals.add("Dog Rex");
+        animals.add("Horse Spirit");
+        animals.add("Cat Jerry");
+        animals.add("Cow Bessie");
+        animals.add("Cow Tom"); //повторение имени
+        animals.add("Lion King"); //исключение для первого задания
+        animals.add("Cat"); //исключение для второго задания
+
         // Создаем объект фермы
         AnimalFarm farm = new AnimalFarm(animals);
 
         // Получаем подсчитанных животных
-        HashMap<Animal, Integer> counted = farm.countedAnimals(animals);
+        HashMap<Animal, Integer> countedAnimals = farm.countedAnimals();
+        System.out.println(countedAnimals);
 
-        // Выводим результат
-        for (HashMap.Entry<Animal, Integer> entry : counted.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
-        }
+        //Получаем уникальные имена животных
+        HashSet<String> uniqueNamesOfAnimals = farm.uniqueNamesOfAnimals();
+        System.out.println(uniqueNamesOfAnimals);
+
+        //Добавляем новых животных в список методом addAnimalToFarm()
+        farm.addAnimalToFarm(Animal.CAT, "Tom");      // CAT Tom
+        farm.addAnimalToFarm(Animal.COW, "Bessie");    // COW Bessie
+        farm.addAnimalToFarm(Animal.DOG);              // DOG N
+        farm.addAnimalToFarm("MysteriousCreature");    // NOT_DEFINED MysteriousCreature
+        farm.addAnimalToFarm(Animal.HORSE, "Spirit");  // HORSE Spirit
+        farm.addAnimalToFarm(Animal.CAT);              // CAT N
+
+        //Вывод всех животных на ферме в переопределенном виде "Вид_животного: Имя_животного"
+        System.out.println(farm);
 
     }
 }

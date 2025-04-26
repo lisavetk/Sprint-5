@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class AnimalFarm {
-    private final List<String> farmAnimals;
+    private final ArrayList<String> farmAnimals;
 
-    public AnimalFarm(List<String> farmAnimals) {
+    public AnimalFarm(ArrayList<String> farmAnimals) {
         this.farmAnimals = farmAnimals;
     }
 
-    public HashMap<Animal, Integer> countedAnimals(List<String> farmAnimals) {
+    //task 1
+    public HashMap<Animal, Integer> countedAnimals() {
         HashMap<Animal, Integer> countedAnimals = new HashMap<>();
 
         for (String farmAnimal : farmAnimals) {
@@ -21,7 +24,45 @@ public class AnimalFarm {
                 System.out.printf("Please correct string: '%s'. Incorrect input data.%n", farmAnimal);
             }
         }
-
         return  countedAnimals;
+    }
+
+    //task 2
+    public HashSet<String> uniqueNamesOfAnimals() {
+        HashSet<String> uniqueNames = new HashSet<>();
+        for (String farmAnimal : farmAnimals) {
+            String name;
+            try {
+                name = farmAnimal.split(" ")[1];
+                uniqueNames.add(name);
+            } catch (Exception e) {
+                System.out.printf("Please correct string: '%s'. Incorrect input data.%n", farmAnimal);
+            }
+        }
+        return uniqueNames;
+    }
+
+    //task 3
+    public void addAnimalToFarm(Animal animal, String name) {
+        farmAnimals.add(animal.name() + " " +name);
+    }
+
+    public void addAnimalToFarm(Animal animal) {
+        farmAnimals.add(animal.name() + " N");
+    }
+
+    public void addAnimalToFarm(String name) {
+        farmAnimals.add(Animal.NOT_DEFINED + " " + name);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String farmAnimal : farmAnimals) {
+            String printFarmAnimal = farmAnimal.replace(" ", ": ");
+            stringBuilder.append(printFarmAnimal).append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 }
